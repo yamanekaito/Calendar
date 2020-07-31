@@ -1,0 +1,48 @@
+body {
+  font-family:"Curier New",monospace;
+  font-size:14px;
+}
+
+table {
+  border-collapse:collapse;
+  /* border隙間をなくす */
+  border:2px solid #eee;
+}
+
+thead,tfoot {
+  background:#eee;
+}
+
+th,td {
+  padding:8px;
+  text-align:center;
+}
+
+tbody td:first-child {
+  /* tbodyの子孫セレクタのtdの最初の要素 */
+  color:red;
+}
+
+tbody td:last-child {
+  /* tbodyの子孫セレクタのtdの最初の要素 */
+  color:blue;
+}
+
+tfoot {
+  font-weight:bold;
+}
+
+td.disabled {
+  opacity:0.3;
+  /* 前月・来月の日程は透明度を挙げて表示 */
+}
+
+td.today {
+  font-weight:bold;
+  /* 今日の日程は太く表示 */
+}
+
+#prev,#next,#today {
+  cursor:pointer;
+  user-select:none;
+}
