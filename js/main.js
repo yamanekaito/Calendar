@@ -2,8 +2,8 @@
 
 // console.clear();
 {
-  const year = 2020;
-  const month = 4; //5月
+  let year = 2020;
+  let month = 4; //5月
 
   function getCalendarHead() {
     const dates = [];
@@ -65,6 +65,16 @@
   }
   
   function createCalendar() {
+    const tbody = document.querySelector('tbody');
+    while(tbody.firstChild) {
+      tbody.removeChild(tbody.firstChild);
+    }
+
+    const title = `${year}/${String(month + 1).padStart(2,'0')}`;
+    //padstart(2,'0') 2桁で表示しそれに満たなかったら0を表示 文字列限定
+    document.getElementById('title').textContent = title;
+    //tbodyに最初の要素がある限り、その要素を削除してね
+
     // const dates = [
     //   getCalendarHead(),
     //   getCalendarBody(),
@@ -99,12 +109,30 @@
         }
         tr.appendChild(td);
       });
-      document.querySelector('tbody').appendChild(tr);
+      tbody.appendChild(tr);
     });
 
     // console.log(dates);
     // console.log(weeks);
   }
+
+  document.getElementById('prev').addEventListener('click',() => {
+    month --;
+    if (month < 0) {
+      year --;
+      month = 11;
+    }
+    createCalendar();
+  })
+
+  document.getElementById('next').addEventListener('click',() => {
+    month ++;
+    if (month > 11) {
+      year ++;
+      month = 0;
+    }
+    createCalendar();
+  })
 
   createCalendar();
 
