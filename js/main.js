@@ -21,7 +21,7 @@
         isDisabled:true,
       })
     }
-    console.log(dates);
+    return dates;
   }
 
   function getCalendarBody() {
@@ -47,10 +47,44 @@
       });
       //オブジェクト配列にする
     }
-    console.log(dates);
-  
+    return dates;
   }
-  getCalendarHead();
+
+  function getCalendarTail() {
+    const dates = [];
+    const lastDay = new Date(year,month + 1,0).getDay();
+    for (let i=1;i<7 - lastDay;i++) {
+      // dates.push(i);
+      dates.push({
+        date:i,
+        isToday:false,
+        isDisabled:true,
+      })
+    }
+    return dates;
+  }
+  
+  function createCalendar() {
+    // const dates = [
+    //   getCalendarHead(),
+    //   getCalendarBody(),
+    //   getCalendarTail(),
+    // ];
+    //配列（オブジェクト）をまとめられていない。
+    const dates = [
+      ...getCalendarHead(),
+      ...getCalendarBody(),
+      ...getCalendarTail(),
+    ];
+    //スプレット構文
+
+    console.log(dates);
+  }
+
+  createCalendar();
+
+  // getCalendarHead();
   // getCalendarBody();
+  // getCalendarTail();
   
 }
