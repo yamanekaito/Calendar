@@ -64,18 +64,22 @@
     return dates;
   }
   
-  function createCalendar() {
+  function clearCalendar() {
     const tbody = document.querySelector('tbody');
     while(tbody.firstChild) {
       tbody.removeChild(tbody.firstChild);
     }
+  }
 
+  function renderTitle() {
     const title = `${year}/${String(month + 1).padStart(2,'0')}`;
     //padstart(2,'0') 2桁で表示しそれに満たなかったら0を表示 文字列限定
     document.getElementById('title').textContent = title;
     //tbodyに最初の要素がある限り、その要素を削除してね
+  }
 
-    // const dates = [
+  function renderWeeks() {
+   // const dates = [
     //   getCalendarHead(),
     //   getCalendarBody(),
     //   getCalendarTail(),
@@ -109,12 +113,15 @@
         }
         tr.appendChild(td);
       });
-      tbody.appendChild(tr);
+      document.querySelector('tbody').appendChild(tr);
     });
-
-    // console.log(dates);
-    // console.log(weeks);
   }
+
+  function createCalendar() {
+    clearCalendar();
+    renderTitle();
+    renderWeeks();
+  };
 
   document.getElementById('prev').addEventListener('click',() => {
     month --;
